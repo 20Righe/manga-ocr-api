@@ -1,0 +1,9 @@
+---
+version: '3.9'
+services:
+  manga-ocr-api:
+    image: 2righe/manga-ocr-api:latest
+    container_name: manga-ocr-api
+    ports:
+      - 5052:5000
+    restart: unless-stopped
