@@ -8,8 +8,19 @@ router = APIRouter()
 mocr = MangaOcr()
 
 
-@router.post("", response_class=PlainTextResponse)
-async def ocr(file: UploadFile = File(...)):
+@router.post(
+    "",
+    summary="Extract Japanese Text from Manga Images",
+    description=(
+        "This endpoint receives an image file of a manga in Japanese and returns the extracted text in plain text. "
+        "Supported image formats include JPEG and PNG, BMP, TIFF, and WebP."
+    ),
+    response_description="The extracted text from the image.",
+    response_class=PlainTextResponse,
+)
+async def ocr(
+    file: UploadFile = File(..., description="The image file to be processed."),
+):
     allowed_content_types = [
         "image/jpeg",
         "image/png",
